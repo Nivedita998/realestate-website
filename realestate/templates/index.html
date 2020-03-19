@@ -12,6 +12,7 @@
             <div class="col-md-10">
               {% comment %} <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">For Rent</span> {% endcomment %}
               <h1 class="mb-2">{{data.title}}</h1>
+              
               <p class="mb-5"><strong class="h2 text-success font-weight-bold">${{data.price}}</strong></p>
               <p><a href="{{data.get_absolute_url}}" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">See Details</a></p>
             </div>
@@ -205,7 +206,7 @@
       </div>
     </div>
 
-    {% comment %} <div class="site-section bg-light">
+     <div class="site-section bg-light">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center">
@@ -216,35 +217,21 @@
           </div>
         </div>
         <div class="row">
+        {% for data in latest  %}
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
+            <a href="{{data.get_absolute_url}}"><img src="{{data.blog_thumbnail.url}}" alt="Image" class="img-fluid"></a>
             <div class="p-4 bg-white">
-              <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-              <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt.</p>
+              <span class="d-block text-secondary small text-uppercase">{{data.date}}</span>
+              <h2 class="h5 text-black mb-3"><a href="#">{{data.title}}</a></h2>
+              <p>{{data.overview}}</p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
-            <a href="#"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-            <div class="p-4 bg-white">
-              <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-              <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="300">
-            <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-            <div class="p-4 bg-white">
-              <span class="d-block text-secondary small text-uppercase">Jan 20th, 2019</span>
-              <h2 class="h5 text-black mb-3"><a href="#">Art Gossip by Mike Charles</a></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias enim, ipsa exercitationem veniam quae sunt.</p>
-            </div>
-          </div>
-
+          {% endfor %}
+          
         </div>
 
       </div>
-    </div> {% endcomment %}
+    </div> 
 
     
     {% comment %} <div class="site-section">

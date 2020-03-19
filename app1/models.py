@@ -1,6 +1,17 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 # Create your models here.
+User=get_user_model()
+
+class Author(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    #profile_picture=models.ImageField()
+
+    
+    def __str__(self):
+        return self.user.username
 
 class Post(models.Model):
     title=models.CharField( max_length=100)
@@ -16,7 +27,9 @@ class Post(models.Model):
     pricepersquarefit=models.IntegerField(default=0)
     squarefit=models.IntegerField(default=0)
     date =models.IntegerField(default=0)
-    content = models.TextField(blank=True) 
+    content = models.TextField(blank=True)
+    
+    
 
 
     def __str__(self):
@@ -47,6 +60,23 @@ class ContactAgent(models.Model):
     
 
 
+class Blogpost_details(models.Model):
+    title=models.CharField(max_length=100)
+    overview=models.TextField()
+    author=models.ForeignKey(Author,on_delete=models.CASCADE)
+    #Timestamp=models.DateTimeField( auto_now_add=True)
+    date =models.DateTimeField()
+    blog_thumbnail=models.ImageField()
+    content =RichTextField(blank=True,null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog_details' , kwargs={
+            'id':self.id
+
+        })
 
 
 
